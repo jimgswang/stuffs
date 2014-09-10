@@ -1,0 +1,14 @@
+{
+  "author": "Jim Wang <jim.gs.wang@gmail.com>",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "grunt": "^0.4.4",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-cli": "^1.8.0",
+    "mocha": "^1.18.2",
+    "sinon": "^1.9.1"
+  },
+  "scripts": {
+    "test": "grunt mochacli"
+  }
+}
