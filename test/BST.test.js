@@ -3,7 +3,7 @@
 var BST = require('../src/BST'),
     expect = require('chai').expect;
 
-describe.only('Binary Search Tree', function() {
+describe('Binary Search Tree', function() {
 
   var tree;
 
@@ -40,6 +40,52 @@ describe.only('Binary Search Tree', function() {
 
       var leaf = tree.root.right.right;
       expect(leaf.item).to.equal(80);
+    });
+  });
+
+  describe('find', function() {
+
+    it('finds inserted item', function() {
+
+      tree.insert(10);
+      tree.insert(70);
+      tree.insert(30);
+      tree.insert(80);
+      tree.insert(23);
+      tree.insert(11);
+
+      var node = tree.find(23);
+      expect(node.item).to.equal(23);
+    });
+  });
+
+  describe('traversal', function() {
+
+    beforeEach(function() {
+
+      tree.insert(20);
+      tree.insert(70);
+      tree.insert(30);
+      tree.insert(80);
+      tree.insert(23);
+      tree.insert(11);
+    });
+
+
+    it('traverses inorder', function() {
+      var result = tree.inorder();
+      expect(result).to.deep.equal([11, 20, 23, 30, 70, 80]);
+    });
+    
+    it('traverses preorder', function() {
+      var result = tree.preorder();
+      expect(result).to.deep.equal([20, 11, 70, 30, 23, 80]);
+    });
+
+    it('traverses postorder', function() {
+      var result = tree.postorder();
+      expect(result).to.deep.equal([11, 23, 30, 80, 70, 20]);
+
     });
   });
 });
