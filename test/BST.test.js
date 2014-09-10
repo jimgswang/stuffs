@@ -57,6 +57,16 @@ describe('Binary Search Tree', function() {
       var node = tree.find(23);
       expect(node.item).to.equal(23);
     });
+
+    it('returns null for item not in tree', function() {
+      tree.insert(10);
+      tree.insert(70);
+      tree.insert(30);
+
+      var node = tree.find(15);
+      expect(node).to.equal(null);
+
+    });
   });
 
   describe('traversal', function() {
@@ -87,5 +97,44 @@ describe('Binary Search Tree', function() {
       expect(result).to.deep.equal([11, 23, 30, 80, 70, 20]);
 
     });
+  });
+  describe('delete', function() {
+
+    beforeEach(function() {
+
+      tree.insert(20);
+      tree.insert(70);
+      tree.insert(30);
+      tree.insert(80);
+      tree.insert(23);
+      tree.insert(11);
+    });
+
+
+    it('can delete root', function() {
+
+      var node = tree.delete(20);
+      expect(node.item).to.equal(20);
+      expect(tree.root.item).to.equal(23);
+
+    });
+
+    it('can delete leaf', function() {
+
+      var node = tree.delete(23);
+
+      expect(node.item).to.equal(23);
+      expect(tree.inorder()).to.deep.equal([11, 20, 30, 70, 80]);
+    });
+
+    it('can delete multiple nodes', function() {
+
+      tree.delete(70);
+      tree.delete(30);
+
+      expect(tree.inorder()).to.deep.equal([11, 20, 23, 30, 80]);
+
+    });
+
   });
 });
